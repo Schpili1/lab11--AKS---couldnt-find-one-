@@ -1,56 +1,52 @@
+# https://github.com/Schpili1/lab11--AKS---couldnt-find-one-
+# Partner 1: Alexander Schpilberg
+# Partner 2: (Worked alone)
+
 import unittest
-from calculator import *
+import calculator
 
 class TestCalculator(unittest.TestCase):
-    ######### Partner 2
-    # def test_add(self): # 3 assertions
-    #     fill in code
 
-    # def test_subtract(self): # 3 assertions
-    #     fill in code
-    # ##########################
+    def test_add(self):
+        self.assertEqual(calculator.add(2, 3), 5)
+        self.assertEqual(calculator.add(-1, 1), 0)
+        self.assertEqual(calculator.add(0, 0), 0)
 
-    ######## Partner 1
-    # def test_multiply(self): # 3 assertions
-    #     fill in code
+    def test_subtract(self):
+        self.assertEqual(calculator.sub(5, 3), 2)
+        self.assertEqual(calculator.sub(0, 4), -4)
+        self.assertEqual(calculator.sub(-2, -5), 3)
 
-    # def test_divide(self): # 3 assertions
-    #     fill in code
-    # ##########################
+    def test_multiply(self):
+        self.assertEqual(calculator.mul(2, 3), 6)
+        self.assertEqual(calculator.mul(-1, 5), -5)
+        self.assertEqual(calculator.mul(0, 100), 0)
 
-    ######## Partner 2
-    # def test_divide_by_zero(self): # 1 assertion
-    #     # call division function inside, example:
-    #     # with self.assertRaises(<INSERT_ERROR_TYPE>):
-    #     #     div(0, 5)
-    #     fill in code
+    def test_divide(self):
+        self.assertAlmostEqual(calculator.div(2, 10), 5.0)
+        self.assertAlmostEqual(calculator.div(4, -8), -2.0)
 
-    # def test_logarithm(self): # 3 assertions
-    #     fill in code
+    def test_divide_by_zero(self):
+        with self.assertRaises(ZeroDivisionError):
+            calculator.div(0, 10)
 
-    # def test_log_invalid_base(self): # 1 assertion
-    #     # use same technique from test_divide_by_zero
-    #     fill in code
-    # ##########################
-    
-    ######## Partner 1
-    # def test_log_invalid_argument(self): # 1 assertion
-    #     # call log function inside, example:
-    #     # with self.assertRaises(<INSERT_ERROR_TYPE>):
-    #     #     logarithm(0, 5)
-    #     fill in code
+    def test_logarithm(self):
+        self.assertAlmostEqual(calculator.log(2, 8), 3.0)
+        self.assertAlmostEqual(calculator.log(10, 1000), 3.0)
 
-    # def test_hypotenuse(self): # 3 assertions
-    #     fill in code
+    def test_log_invalid_base(self):
+        with self.assertRaises(ValueError):
+            calculator.log(-2, 8)
+        with self.assertRaises(ValueError):
+            calculator.log(1, 10)
+        with self.assertRaises(ValueError):
+            calculator.log(10, 0)
 
-    # def test_sqrt(self): # 3 assertions
-    #     # Test for invalid argument, example:
-    #     # with self.assertRaises(<INSERT_ERROR_TYPE>):
-    #     #    square_root(NUM)
-    #     # Test basic function
-    #     fill in code
-    ##########################
+    def test_exponent(self):
+        self.assertEqual(calculator.exp(2, 3), 8)
+        self.assertEqual(calculator.exp(5, 0), 1)
+        self.assertEqual(calculator.exp(-2, 2), 4)
 
-# Do not touch this
+
 if __name__ == "__main__":
     unittest.main()
